@@ -19,7 +19,12 @@ EXPOSE 8140
 ENV JAVA_ARGS="-Xms256m -Xmx512m" \
     PATH=/opt/puppetlabs/bin/:$PATH
 
+ENV PUPPET_CA='true'
+
 RUN sed -i "s/JAVA_ARGS=.*/JAVA_ARGS=\"${JAVA_ARGS}\"/g" /etc/sysconfig/puppetserver
+RUN if [ $PUPPET_CA != 'true' ]; then sed -i 's/puppetlabs.services.ca.certificate-authority-service\/certificate-authority-service/#puppetlabs.services.ca.certificate-authority-service\/certificate-authority-service/g' /etc/puppetlabs/puppetserver/bootstrap.cfg ; fi
+RUN if [ $PUPPET_CA != 'true' ]; then sed -i 's/#puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/g' /etc/puppetlabs/puppetserver/bootstrap.cfg
+
 RUN chown puppet:puppet /var/run/puppetlabs
 
 #puppet.conf, autosign.conf, ssl.conf, auth.conf, etc etc.
