@@ -21,10 +21,6 @@ ENV JAVA_ARGS="-Xms256m -Xmx512m" \
 
 ENV PUPPET_CA='true'
 
-RUN sed -i "s/JAVA_ARGS=.*/JAVA_ARGS=\"${JAVA_ARGS}\"/g" /etc/sysconfig/puppetserver
-RUN if [ $PUPPET_CA != 'true' ]; then sed -i 's/puppetlabs.services.ca.certificate-authority-service\/certificate-authority-service/#puppetlabs.services.ca.certificate-authority-service\/certificate-authority-service/g' /etc/puppetlabs/puppetserver/bootstrap.cfg ; fi
-RUN if [ $PUPPET_CA != 'true' ]; then sed -i 's/#puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/g' /etc/puppetlabs/puppetserver/bootstrap.cfg
-
 RUN chown puppet:puppet /var/run/puppetlabs
 
 #puppet.conf, autosign.conf, ssl.conf, auth.conf, etc etc.
@@ -33,5 +29,6 @@ VOLUME /etc/puppetlabs/puppet
 #environments/, modules/ hiera.yaml 
 VOLUME /etc/puppetlabs/code
 
-
-CMD ['/opt/puppetlabs/bin/puppetserver', 'foreground']
+COPY run.sh /usr/local/bin/run.sh
+RUN chmod +x /usr/local/bin/run.sh
+CMD /usr/local/bin/run.sh
