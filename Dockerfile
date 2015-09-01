@@ -23,11 +23,15 @@ ENV PUPPET_CA='true'
 
 RUN chown puppet:puppet /var/run/puppetlabs
 
+#Allow mounting in of puppetserver configs for performance tuning etc. 
+VOLUME /etc/puppetlabs/puppetserver
+
 #puppet.conf, autosign.conf, ssl.conf, auth.conf, etc etc.
 VOLUME /etc/puppetlabs/puppet 
 
 #environments/, modules/ hiera.yaml 
 VOLUME /etc/puppetlabs/code
+
 
 COPY run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
