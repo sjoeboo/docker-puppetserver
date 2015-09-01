@@ -21,7 +21,7 @@ ENV JAVA_ARGS="-Xms256m -Xmx512m" \
 
 ENV PUPPET_CA='true'
 
-ENV GEMS="hipchat hiera-regex"
+ENV GEMS=""
 
 RUN chown puppet:puppet /var/run/puppetlabs
 

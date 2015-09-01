@@ -12,6 +12,12 @@ Expects 2 mounts:
 
 Environmental Variables:
 
-JAVA_ARGS
+```JAVA_ARGS=<JAVA ARGS>```
+ (default leaves pupperserver defaults)
 
-PUPPET_CA (true|false)
+```PUPPET_CA=(true|false)```
+
+ (default true)
+
+Install gems into puppetserver at container runtime. 
+```GEMS="hipchat hiera-eyaml" (default is none)```
