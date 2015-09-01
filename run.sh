@@ -18,5 +18,10 @@ then
   sed -i 's/#puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/g' /etc/puppetlabs/puppetserver/bootstrap.cfg;
 fi
 
+#Install gems into the puppetserver as requestes
+for g in $GEMS; do
+  puppetserver gem install $g
+done
+
 /opt/puppetlabs/bin/puppetserver foreground 
 
