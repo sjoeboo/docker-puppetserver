@@ -10,4 +10,8 @@ Expects 2 mounts:
 /etc/puppetlabs/code:
  A dir containing your puppet codebase, modules/ hiera.yaml, environments/(built with r10k?)
 
+Environmental Variables:
 
+JAVA_ARGS
+
+PUPPET_CA (true|false)

@@ -18,5 +18,5 @@ then
   sed -i 's/#puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/puppetlabs.services.ca.certificate-authority-disabled-service\/certificate-authority-disabled-service/g' /etc/puppetlabs/puppetserver/bootstrap.cfg;
 fi
 
-/opt/puppetlabs/bin/puppetserver forground 
+/opt/puppetlabs/bin/puppetserver foreground 
 
