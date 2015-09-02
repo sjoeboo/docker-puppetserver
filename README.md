@@ -10,14 +10,13 @@ Expects 2 mounts:
 /etc/puppetlabs/code:
  A dir containing your puppet codebase, modules/ hiera.yaml, environments/(built with r10k?)
 
+/etc/puppetlabs/puppetserver:
+ A dir for all the puppetserver configs
+
 Environmental Variables:
 
 ```JAVA_ARGS=<JAVA ARGS>```
  (default leaves pupperserver defaults)
-
-```PUPPET_CA=(true|false)```
-
- (default true)
 
 Install gems into puppetserver at container runtime. 
 ```GEMS="hipchat hiera-eyaml" (default is none)```
